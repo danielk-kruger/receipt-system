@@ -1,0 +1,16 @@
+package com.project.receiptsystem.receipt;
+
+public enum ProductData {
+    COMPANY_NUMBER,
+    DOC_NUMBER,
+    SEQUENCE,
+    PRODUCT_CODE,
+    PRODUCT_DESCRIPTION,
+    QUANTITIES,
+    AMOUNT_UNIT,
+    TOTAL_AMOUNT,
+    DOCUMENT_DATE,
+    OTHER_DESCRIPTION,
+    DISCOUNT_PERCENTAGE,
+    DISCOUNT_AMOUNT
+}
