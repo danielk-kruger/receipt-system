@@ -1,0 +1,3 @@
+# Receipt System Developed in Java
+
+Documentation to be written soon...
