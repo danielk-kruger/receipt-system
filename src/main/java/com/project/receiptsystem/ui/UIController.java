@@ -1,33 +1,18 @@
 package com.project.receiptsystem.ui;
 
-import com.project.receiptsystem.Application;
 import com.project.receiptsystem.FileService;
 import com.project.receiptsystem.docs.PrinterService;
 import com.spire.pdf.PdfDocument;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.StackPane;
-import javafx.scene.text.Font;
-import javafx.stage.Stage;
 
-import javax.print.PrintException;
 import java.awt.*;
-import java.awt.print.PageFormat;
-import java.awt.print.Paper;
 import java.awt.print.PrinterException;
-import java.awt.print.PrinterJob;
 import java.io.File;
-import java.io.IOException;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class UIController implements Initializable {
