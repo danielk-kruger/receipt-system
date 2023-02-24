@@ -1,8 +1,6 @@
 package com.project.receiptsystem.docs;
 
-
 import com.spire.pdf.PdfDocument;
-
 import java.awt.print.PageFormat;
 import java.awt.print.Paper;
 import java.awt.print.PrinterJob;

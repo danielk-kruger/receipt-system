@@ -17,10 +17,8 @@ public class Receipt {
             ResultSetMetaData metadata = res.getMetaData();
             ReceiptData[] constants = ReceiptData.values();
 
-            for (int i = 1; i <= metadata.getColumnCount() - 1; i++) {
+            for (int i = 1; i <= metadata.getColumnCount() - 1; i++)
                 this.receipt.put(constants[i - 1], res.getString(metadata.getColumnName(i+1)));
-            }
-
 
         } catch (SQLException e) {
             e.printStackTrace();

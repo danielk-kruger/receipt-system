@@ -35,7 +35,6 @@ public class InvoiceDocument {
         this.doc = new Document();
         this.doc.loadFromFile(fileService.getResourcesPath("/Invoice-Template.docx"));
         this.setupDocument(user);
-
     }
 
     private void setupDocument(Receipt user) {
