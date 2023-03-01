@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class DBService {
 
     private Connection dbConn;
-    private final String url = "jdbc:Cache://197.249.50.94:1972/DEVESSE";
+    private final String url = "jdbc:Cache://devesse.sercin.co.mz:1972/BASE";
     private final String user = "APP";
     private final String password = "%sys";
 

@@ -32,10 +32,9 @@ public class Application extends javafx.application.Application {
 
         FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("job.fxml"));
 
-        Scene scene = new Scene(fxmlLoader.load(), 600, 600);
+        Scene scene = new Scene(fxmlLoader.load(), 992, 1020);
         UIController ui = fxmlLoader.getController();
         ui.setInvoicePreview(fileService.getPreviewImage());
-        ui.setDocNum(cmd.getOptionValue("doc"));
 
         stage.setTitle("Receipt Generator!");
         stage.setScene(scene);
@@ -53,9 +52,9 @@ public class Application extends javafx.application.Application {
 
             //115240
             cmd = new Commands().parseCommands(args);
-            System.out.println("Found Client ID: " + cmd.getOptionValue("id"));
+//            System.out.println("Found Client ID: " + cmd.getOptionValue("id"));
 
-            Receipt rcp = controller.fetchByClientId(cmd.getOptionValue("id"));
+            Receipt rcp = controller.fetchByClientId(cmd.getOptionValue("doc"));
             displayReceipt(rcp);
 
 //            List<Product> prods = controller.findProductsByDocumentNumber(rcp.getReceipt().get(ReceiptData.DOC_NUMBER));

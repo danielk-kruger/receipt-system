@@ -17,5 +17,5 @@ public enum ReceiptData {
     AMOUNT,
     NUIT,
     DOC_NUMBER,
-    COMPANY_NUMBER
+    COMPANY_NUMBER,
 }

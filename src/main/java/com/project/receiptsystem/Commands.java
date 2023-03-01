@@ -14,7 +14,7 @@ public class Commands {
 
         // sample: "-id {number}"
         this.id = new Option("id", true, "Client ID");
-        this.id.setRequired(true);
+        this.id.setRequired(false);
         cliOptions.addOption(this.id);
 
         // sample: "-c {companyNumber}"

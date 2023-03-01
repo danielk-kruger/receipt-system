@@ -17,7 +17,6 @@ public class FileService {
         pdf.loadFromFile(getResourcesPath("/temp/Invoice.pdf"));
 
         return pdf;
-
     }
 
     public File getInvoiceFile() {

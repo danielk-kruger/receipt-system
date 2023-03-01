@@ -18,6 +18,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
 
@@ -41,7 +42,7 @@ public class InvoiceDocument {
         try {
             for (Map.Entry<ReceiptData, String> item : user.getReceipt().entrySet()) {
                 String tempText = String.format("#%s", item.getKey());
-                String newValue = item.getValue() != null ? item.getValue() : "Empty Value";
+                String newValue = item.getValue() != null ? item.getValue() : "";
 
                 this.doc.replace(tempText, newValue, true, true);
             }
@@ -52,10 +53,12 @@ public class InvoiceDocument {
     }
 
     private String[][] unpackProducts(List<Product> purchases) {
+        DecimalFormat df = new DecimalFormat("###, ###, ###.00 Mt");
+
         return purchases
                 .stream()
                 .map(product -> new String[] {
-                        product.getProduct(ProductData.PRODUCT_CODE),
+                        product.getProduct(ProductData.SEQUENCE),
                         product.getProduct(ProductData.PRODUCT_DESCRIPTION),
                         product.getProduct(ProductData.QUANTITIES),
                         product.getProduct(ProductData.AMOUNT_UNIT),
@@ -82,13 +85,13 @@ public class InvoiceDocument {
         for (int r = 0; r < this.purchaseData.length; r++) {
             for (int c = 0; c < this.purchaseData[r].length; c++) {
                 // fill data in cells
-                table.getRows().get(r + 1).getCells().get(c).getParagraphs().get(0).setText(this.purchaseData[r][c]);
+                table.getRows().get(r+1).getCells().get(c).getParagraphs().get(0).setText(this.purchaseData[r][c]);
             }
         }
     }
 
     public InvoiceDocument writeToDocument(){
-        Table table = this.doc.getSections().get(0).getTables().get(2);
+        Table table = this.doc.getSections().get(0).getTables().get(3);
 
         if (this.purchaseData.length > 1)
             // add rows
@@ -111,8 +114,8 @@ public class InvoiceDocument {
 
             // save the new image and crop the image to cut out whitespace and only show the receipt on the preview
             BufferedImage img = invoice
-                    .saveAsImage(0, PdfImageType.Bitmap, 240, 240)
-                    .getSubimage(0, 992, 2620, 2048);
+                    .saveAsImage(0, PdfImageType.Bitmap, 64, 64)
+                    .getSubimage(0, 243, 529, 749);
 
             BufferedImage cropped = new BufferedImage(img.getWidth(), img.getHeight(), BufferedImage.TYPE_INT_RGB);
             Graphics g = cropped.createGraphics();

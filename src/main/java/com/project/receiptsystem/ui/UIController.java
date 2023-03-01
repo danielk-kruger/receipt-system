@@ -19,8 +19,6 @@ public class UIController implements Initializable {
 
     private FileService fileService = new FileService();
 
-    @FXML
-    private Label docNum;
 
     @FXML
     private ImageView imageContainer;
@@ -63,10 +61,6 @@ public class UIController implements Initializable {
         imageContainer.setImage(previewImage);
     }
 
-    @FXML
-    public void setDocNum(String documentNumber) {
-        docNum.setText(documentNumber);
-    }
 
     /**
      * Called to initialize a controller after its root element has been

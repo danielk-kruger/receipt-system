@@ -1,16 +1,17 @@
 package com.project.receiptsystem.receipt;
 
 public enum ProductData {
+    SEQUENCE,
     COMPANY_NUMBER,
     DOC_NUMBER,
-    SEQUENCE,
+    IDK,
     PRODUCT_CODE,
     PRODUCT_DESCRIPTION,
     QUANTITIES,
     AMOUNT_UNIT,
     TOTAL_AMOUNT,
-    DOCUMENT_DATE,
     OTHER_DESCRIPTION,
+    DOCUMENT_DATE,
     DISCOUNT_PERCENTAGE,
     DISCOUNT_AMOUNT
 }

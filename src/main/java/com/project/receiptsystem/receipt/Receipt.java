@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class Receipt {
     private LinkedHashMap<ReceiptData, String> receipt;
@@ -17,8 +18,12 @@ public class Receipt {
             ResultSetMetaData metadata = res.getMetaData();
             ReceiptData[] constants = ReceiptData.values();
 
-            for (int i = 1; i <= metadata.getColumnCount() - 1; i++)
+
+            for (int i = 1; i <= metadata.getColumnCount() - 1; i++){
+//                System.out.println(metadata.getColumnType(i+1));
                 this.receipt.put(constants[i - 1], res.getString(metadata.getColumnName(i+1)));
+            }
+
 
         } catch (SQLException e) {
             e.printStackTrace();
