@@ -74,6 +74,9 @@
             <groupId>com.intersys</groupId>
             <artifactId>cachejdbc</artifactId>
             <version>1.0</version>
+            <scope>system</scope>
+
+            <systemPath>${project.basedir}/src/main/resources/cachejdbc.jar</systemPath>
         </dependency>
     </dependencies>
 

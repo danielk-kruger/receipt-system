@@ -10,6 +10,7 @@ module com.project.receiptsystem {
     requires commons.cli;
     requires java.desktop;
 
+
     opens com.project.receiptsystem to javafx.fxml;
     opens com.project.receiptsystem.ui to javafx.fxml;
     exports com.project.receiptsystem;

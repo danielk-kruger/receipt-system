@@ -48,8 +48,9 @@ public class ReceiptController {
 
     public Receipt fetchByClientId(String clientId) {
         try {
-            for (Receipt rcp : this.allReceipts) {
-                String client = rcp.getReceipt().get(ReceiptData.DOC_NUMBER);
+            for (Receipt rcp : this.getAllReceipts()) {
+                String client = rcp.getReceipt().get(ReceiptData.CLIENT_ID);
+                System.out.println(rcp.getReceipt().toString());
 
                 if (client.equals(clientId))
                     return rcp;

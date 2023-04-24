@@ -7,8 +7,8 @@ import java.awt.print.PrinterJob;
 
 public class PrinterService {
 
-    private PrinterJob printJob;
-    private PageFormat pgFormat;
+    private final PrinterJob printJob;
+    private final PageFormat pgFormat;
 
     public PrinterService() {
         //Create a PrinterJob object which is initially associated with the default printer

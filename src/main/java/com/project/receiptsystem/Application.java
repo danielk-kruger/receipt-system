@@ -50,16 +50,9 @@ public class Application extends javafx.application.Application {
             db.connect();
             ReceiptController controller = new ReceiptController(db.getConnection());
 
-            //115240
             cmd = new Commands().parseCommands(args);
-//            System.out.println("Found Client ID: " + cmd.getOptionValue("id"));
-
             Receipt rcp = controller.fetchByClientId(cmd.getOptionValue("doc"));
-            displayReceipt(rcp);
-
-//            List<Product> prods = controller.findProductsByDocumentNumber(rcp.getReceipt().get(ReceiptData.DOC_NUMBER));
-            List<Product> prods = controller.findProductsByDocumentNumber(cmd.getOptionValue("doc"));
-            displayProductData(prods);
+            List<Product> prods = controller.findProductsByDocumentNumber(rcp.getReceipt().get(ReceiptData.DOC_NUMBER));
 
             if (cmd.hasOption("p")) {
                 doc = new InvoiceDocument(rcp, prods);
@@ -67,8 +60,6 @@ public class Application extends javafx.application.Application {
 
                 launch(args);
             }
-
-//            System.out.println(rcp.getReceipt().get(ReceiptData.DOC_NUMBER));
 
         } catch (Exception e) {
             System.out.println("An error occured while accessing the database");

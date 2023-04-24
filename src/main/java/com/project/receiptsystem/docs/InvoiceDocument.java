@@ -18,6 +18,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.nio.file.Path;
 import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
@@ -26,15 +27,15 @@ import java.util.Map;
 public class InvoiceDocument {
 
     Document doc;
-    private String[][] purchaseData;
+    private final String[][] purchaseData;
     FileService fileService;
 
 
-    public InvoiceDocument(Receipt user, List<Product> purchaseData) throws URISyntaxException {
+    public InvoiceDocument(Receipt user, List<Product> purchaseData) {
         this.fileService = new FileService();
         this.purchaseData = this.unpackProducts(purchaseData);
         this.doc = new Document();
-        this.doc.loadFromFile(fileService.getResourcesPath("/Invoice-Template.docx"));
+        this.doc.loadFromFile(fileService.createTemplate()); // copy out the invoice template and get path to copy
         this.setupDocument(user);
     }
 
@@ -53,7 +54,7 @@ public class InvoiceDocument {
     }
 
     private String[][] unpackProducts(List<Product> purchases) {
-        DecimalFormat df = new DecimalFormat("###, ###, ###.00 Mt");
+//        DecimalFormat df = new DecimalFormat("###, ###, ###.00 Mt");
 
         return purchases
                 .stream()
@@ -90,7 +91,7 @@ public class InvoiceDocument {
         }
     }
 
-    public InvoiceDocument writeToDocument(){
+    public InvoiceDocument writeToDocument() {
         Table table = this.doc.getSections().get(0).getTables().get(3);
 
         if (this.purchaseData.length > 1)
@@ -99,18 +100,19 @@ public class InvoiceDocument {
 
         this.populateTable(table);
         this.doc.isUpdateFields(true);
+//        this.fileService.writeTemplate(this.template);
         return this;
     }
 
     public InvoiceDocument exportToPDF() {
         // export to pdf document
-        this.doc.saveToFile(fileService.getResourcesPath("/temp/Invoice.pdf"), FileFormat.PDF);
+        this.doc.saveToFile(this.fileService.appInstallDirectory("temp/Invoice.pdf"), FileFormat.PDF);
         return this;
     }
 
     public void previewImage() {
         try {
-            PdfDocument invoice = fileService.getInvoicePDF();
+            PdfDocument invoice = this.fileService.getInvoicePDF();
 
             // save the new image and crop the image to cut out whitespace and only show the receipt on the preview
             BufferedImage img = invoice
@@ -121,7 +123,7 @@ public class InvoiceDocument {
             Graphics g = cropped.createGraphics();
             g.drawImage(img, 0, 0, null);
 
-            ImageIO.write(cropped, "PNG", new File(fileService.getResourcesPath("/temp/preview.png")));
+            ImageIO.write(cropped, "PNG", new File(this.fileService.appInstallDirectory("temp/preview.png")));
 
         } catch (IOException e) {
             System.out.println("Error creating preview...");
